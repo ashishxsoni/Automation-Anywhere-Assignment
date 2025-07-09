@@ -1,0 +1,7 @@
+{
+  "username": "testuser",
+  "password": "pass123",
+  "botName": "SampleBot",
+  "learningInstanceName": "MyLearningInstance",
+  "customField": "Department"
+}
