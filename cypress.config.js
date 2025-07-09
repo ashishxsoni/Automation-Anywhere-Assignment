@@ -1,12 +1,18 @@
+require('dotenv').config(); 
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "https://your-app.com", // replace this with actual URL
+    pageLoadTimeout: 90000,
+    baseUrl: process.env.CYPRESS_BASE_URL,
     specPattern: "cypress/e2e/**/*.cy.js",
-      watchForFileChanges: false,
+    watchForFileChanges: false,
+    env: {
+      username: process.env.CYPRESS_USERNAME,
+      password: process.env.CYPRESS_PASSWORD,
+    },
     setupNodeEvents(on, config) {
-      // implement node events here
+      return config;
     },
   },
   reporter: "mochawesome",
@@ -14,6 +20,6 @@ module.exports = defineConfig({
     reportDir: "cypress/reports",
     overwrite: false,
     html: true,
-    json: true
-  }
+    json: true,
+  },
 });

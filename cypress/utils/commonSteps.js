@@ -1,5 +1,5 @@
 import LoginPage from '../pages/loginPage';
-import testData from '../fixtures/testData.json';
+import testData from '../fixtures/textData.json';
 
 export function login() {
   LoginPage.visit();
@@ -14,3 +14,14 @@ export function logout() {
   cy.get("#logoutBtn").click();
   cy.url().should("include", "/login");
 }
+
+
+
+
+// Cypress.Commands.add("login", () => {
+//   LoginPage.visit()
+//     .typeUsername(testData.username)
+//     .typePassword(testData.password)
+//     .toggleRememberMe()
+//     .clickLogin();
+// });
