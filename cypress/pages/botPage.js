@@ -1,27 +1,74 @@
 class BotPage {
-  navigateToBotSection() {
-    cy.get("#botMenu").click();
-  }
+  elements = {
+    createBotButton: () =>
+      cy.contains('button', 'Create a bot…', { timeout: 15000 }),
+
+    botNameInput: () =>
+      cy.get('input[name="name"]', { timeout: 15000 }),
+
+    createAndEditBtn: () =>
+      cy.get('button[name="submit"]').contains('Create & edit', { timeout: 15000 }),
+
+    errorMessage: () =>
+      cy.get('.message__title', { timeout: 15000 }),
+
+    createDialogTitle: () =>
+      cy.contains("h1", "Create Task Bot", { timeout: 15000 }),
+
+ platformWindowsOption: () =>
+  cy.get('[data-value="WINDOWS"]:visible', { timeout: 15000 }).first(),
+
+    automationSidebar: () =>
+      cy.get('a[name="automations"]', { timeout: 15000 }),
+
+    modalContent: () =>
+      cy.get(".modal-form__content", { timeout: 15000 }),
+  };
 
   clickCreateBot() {
-    cy.get("#createBotBtn").click();
+   this.elements.createBotButton().click({ force: true }); // Fix overlap issue
+    return this;
   }
 
-  enterBotName(name) {
-    cy.get("#botNameInput").type(name);
+  typeBotName(name) {
+    this.elements.botNameInput().clear().type(name);
+    return this;
   }
 
-  selectMessageBoxTask() {
-    cy.get("#taskTypeDropdown").select("Message Box");
+  submitBotCreation() {
+     this.elements.platformWindowsOption().click({ force: true }); // Ensure platform selected
+    this.elements.createAndEditBtn().click();
+    return this;
   }
 
-  saveBot() {
-    cy.get("#saveBotBtn").click();
-  }
+ assertCreateDialogVisible() {
+  this.elements.createDialogTitle().should('contain.text', 'Create Task Bot', { timeout: 15000 });
 
-  assertBotCreated(name) {
-    cy.contains(name).should("exist");
-  }
+  this.elements.modalContent().should("be.visible", { timeout: 15000 }).within(() => {
+    cy.get('input[name="name"]', { timeout: 15000 }).should("have.attr", "placeholder", "Required");
+    cy.get('input[name="description"]', { timeout: 15000 }).should("have.attr", "maxlength", "255");
+    cy.contains("Create & edit", { timeout: 15000 }).should("be.visible");
+  });
+
+  return this;
 }
 
-export default new BotPage();
+
+assertBotNameErrorIfExists() {
+  const expectedText = "Unable to create a file or folder with the name";
+  
+  return cy.get("body", { timeout: 5000 }).then(($body) => {
+    if ($body.find(".message__title").length) {
+      return cy.get(".message__title").invoke("text").then((text) => {
+        return text.includes(expectedText);
+      });
+    }
+    return false;
+  });
+}
+
+
+
+}
+
+export default BotPage;

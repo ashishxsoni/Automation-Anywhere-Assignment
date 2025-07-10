@@ -23,3 +23,37 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import LoginPage from '../pages/loginPage';
+import AutomationPage from '../pages/automationPage';
+Cypress.Commands.add('login', () => {
+    const loginPage = new LoginPage();
+    const { username, password } = Cypress.env();
+
+    // Alternatively, we can use the following code if you want to keep the login logic inline:/   
+  loginPage.login(username, password); //Reusing the method
+    // or we can use the following code if we want to keep the login logic 
+/*     login
+     cy.visit('/#/login');
+     loginPage
+      .typeUsername(username)
+      .typePassword(password)
+      .clickLogin();
+
+    cy.url({ timeout: 15000 }).should('include', '/#/home'); */
+  
+});
+
+Cypress.Commands.add('logout', () => {
+    const loginPage = new LoginPage();
+    loginPage.logout();
+  
+});
+
+Cypress.Commands.add('openAutomationBotPage', (botName) => {
+    
+    const automationPage = new AutomationPage();
+    automationPage
+    .openAutomationBotPage(botName);
+    
+  });
+
