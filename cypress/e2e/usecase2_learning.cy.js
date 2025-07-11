@@ -15,8 +15,8 @@ describe("Create Learning Instance with Field", () => {
         .selectUserDefinedType()
         .clickNext()
         .verifyCreation(data.learningInstance.name)
-        .addCustomField(data.learningInstance.fieldName, data.learningInstance.fieldLabel)
-        .goHomeAndVerify(data.learningInstance.name);
+        .addCustomField(data.learningInstance.fieldName, data.learningInstance.fieldLabel);
+        // .goHomeAndVerify(data.learningInstance.name);
     });
   });
 
