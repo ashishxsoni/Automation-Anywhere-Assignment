@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import LoginPage from '../pages/loginPage';
 import AutomationPage from '../pages/automationPage';
+
 Cypress.Commands.add('login', () => {
     const loginPage = new LoginPage();
     const { username, password } = Cypress.env();

@@ -13,7 +13,7 @@ describe("Bot Creation Test - Message Box Task Bot", () => {
     cy.login(); // custom command from Cypress/support/commands.js
   });
 
-  //1. Visibility Tests
+  //1. Visibility Tests (OPTIONAL)
   // it("should open and verify Create Task Bot modal", () => {
   //   botPage
   //     .clickCreateBot()
@@ -65,7 +65,7 @@ describe("Bot Creation Test - Message Box Task Bot", () => {
     });
   });
 
- //3.search Bot and verify it 
+ //3.search Bot and verify it  (OPTIONAL)
 //  it("should verify Automation section, search and open bot", () => {
 //     cy.fixture("testData").then(({ botNames }) => {
 //       const botName = createdBotName || botNames[0];

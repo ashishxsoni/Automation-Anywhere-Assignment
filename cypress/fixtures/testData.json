@@ -4,7 +4,6 @@
   "botNames": ["BotByAshish", "BotByAshish2", "BotByAshish3", "BotByAshish4", "BotByAshish5"],
   "bot_message": "Sample Bot msg",
   "learningInstanceName": "MyLearningInstance",
-  "customField": "Department",
   "learningInstance": {
     "name": "TestLI 123",
     "description": "This is a test learning instance",

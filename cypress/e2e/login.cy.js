@@ -8,7 +8,7 @@ describe('Login Functionality Tests', () => {
     loginPage.visit();
   });
 
-  // 1. Visibility Tests
+  // 1. Visibility Tests (OPTIONAL)
   // it('should display all login form elements', () => {
   //   loginPage.elements.usernameInput().should('be.visible');
   //   loginPage.elements.passwordInput().should('be.visible');
@@ -28,7 +28,7 @@ describe('Login Functionality Tests', () => {
     cy.url({ timeout: 15000 }).should('include', '/#/home');
   });
 
-  // 3. Username Remember Me Test
+  // 3. Username Remember Me Test (OPTIONAL)
   // it('should remember username when checkbox is checked', () => {
   //   loginPage
   //     .typeUsername(username)
@@ -45,7 +45,7 @@ describe('Login Functionality Tests', () => {
   //   loginPage.elements.usernameInput().should('have.value', username);
   // });
 
-  // 4. Password Visibility Test
+  // 4. Password Visibility Test (OPTIONAL)
   // it('should toggle password visibility', () => {
   //   loginPage
   //     .typePassword(password)
@@ -56,7 +56,7 @@ describe('Login Functionality Tests', () => {
   //     .assertPasswordIsMasked();
   // });
 
-  // 5. Invalid credentials test
+  // 5. Invalid credentials test (OPTIONAL)
   // it('should show error for invalid credentials', () => {
   //   loginPage
   //     .typeUsername('invalid_user')
