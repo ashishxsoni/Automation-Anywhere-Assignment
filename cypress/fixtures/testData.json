@@ -1,6 +1,7 @@
 {
   "username": "testuser",
   "password": "pass123",
+  "botName":"BotByAshish",
   "botNames": ["BotByAshish", "BotByAshish2", "BotByAshish3", "BotByAshish4", "BotByAshish5"],
   "bot_message": "Sample Bot msg",
   "learningInstanceName": "MyLearningInstance",
