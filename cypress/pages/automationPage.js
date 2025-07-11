@@ -1,5 +1,3 @@
-// automationPage.js
-
 class AutomationPage {
   elements = {
     automationSidebar: () =>

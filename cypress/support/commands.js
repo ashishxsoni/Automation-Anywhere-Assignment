@@ -45,9 +45,16 @@ Cypress.Commands.add('login', () => {
 });
 
 Cypress.Commands.add('logout', () => {
-    const loginPage = new LoginPage();
-    loginPage.logout();
-  
+  cy.url().then((url) => {
+    if (url.includes('/login')) {
+      cy.log('Already logged out.');
+    } else if (url === 'about:blank') {
+      cy.log('Cypress is on blank page. Skipping logout.');
+    } else {
+      const loginPage = new LoginPage();
+      loginPage.logout();
+    }
+  });
 });
 
 Cypress.Commands.add('openAutomationBotPage', (botName) => {

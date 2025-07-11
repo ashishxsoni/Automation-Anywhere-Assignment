@@ -9,19 +9,21 @@ const messageBoxPage = new MessageBoxPage();
 let createdBotName = "BotByAshish"; // Variable to store the created bot name
 
 describe("Bot Creation Test - Message Box Task Bot", () => {
-  before(() => {
-    cy.login(); // custom command from Cypress/support/commands.js
+   before(() => {
+    cy.login(); // login once
   });
 
-  //1. Visibility Tests (OPTIONAL)
-  // it("should open and verify Create Task Bot modal", () => {
-  //   botPage
-  //     .clickCreateBot()
-  //     .assertCreateDialogVisible(); 
-  // });
+  beforeEach(() => {
+    cy.url().then((url) => {
+      if (url === "about:blank" || url.includes("/login")) {
+        cy.log("Re-visiting login and redirecting to dashboard...");
+        cy.login(); // Re-login if logged out
+      }
+    });
+  });
 
 
-  //2. Bot Creation
+  // Bot Creation
    it("should tries each bot name until one is accepted", () => {
     cy.fixture("testData").then(({ botNames }) => {
       // create a recursive function to try each bot name
@@ -64,22 +66,8 @@ describe("Bot Creation Test - Message Box Task Bot", () => {
       tryNext(0); // Begin with the first bot name
     });
   });
-
- //3.search Bot and verify it  (OPTIONAL)
-//  it("should verify Automation section, search and open bot", () => {
-//     cy.fixture("testData").then(({ botNames }) => {
-//       const botName = createdBotName || botNames[0];
-
-//     automationPage
-//     .navigateToAutomation()
-//     .searchAndOpenBot(botName)
-     
-//     cy.url({ timeout: 15000 }).should("include", "/bots/repository/private");
-
-//     });
-//   });
-
-  it("should insert Message Box step and validate", () => {
+//insert message 
+    it("should insert Message Box step and validate", () => {
     cy.fixture("testData").then(({ bot_message }) => {
 
     cy.openAutomationBotPage(createdBotName); // custom Cypress command
@@ -94,4 +82,32 @@ describe("Bot Creation Test - Message Box Task Bot", () => {
     });
 });
 
+
+
+
+  // Visibility Tests (OPTIONAL)
+  // it("should open and verify Create Task Bot modal", () => {
+  //   botPage
+  //     .clickCreateBot()
+  //     .assertCreateDialogVisible(); 
+  // });
+
+ //search Bot and verify it  (OPTIONAL)
+//  it("should verify Automation section, search and open bot", () => {
+//     cy.fixture("testData").then(({ botNames }) => {
+//       const botName = createdBotName || botNames[0];
+
+//     automationPage
+//     .navigateToAutomation()
+//     .searchAndOpenBot(botName)
+     
+//     cy.url({ timeout: 15000 }).should("include", "/bots/repository/private");
+
+//     });
+//   });
+
+
+  after(() => {
+    cy.logout();
+  });
 })
