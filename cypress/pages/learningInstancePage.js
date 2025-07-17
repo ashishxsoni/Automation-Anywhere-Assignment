@@ -1,3 +1,12 @@
+/**
+ * Author: Ashish Soni
+ * Project: Automation Anywhere SDET Assignment
+ * GitHub: https://github.com/ashishxsoni/Automation-Anywhere-Assignment
+ * Copyright (c) 2025. All rights reserved.
+ * Any reproduction without proper credit is unethical.
+ */
+
+
 class LearningInstancePage {
   getIframeBody() {
     return cy
@@ -29,6 +38,7 @@ class LearningInstancePage {
     createFieldButton: () => this.getIframeBody().find('button[aria-label="Create"].command-button__button--is_solid'),
     homeButton: () => cy.get('a[name="dashboard"]', { timeout: 10000 }),
     instanceInList: (name) => cy.contains(name)
+
   };
 
   navigateToLearningInstances() {

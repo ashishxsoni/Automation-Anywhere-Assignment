@@ -10,5 +10,6 @@
     "description": "This is a test learning instance",
     "fieldName": "TestField invoice",
     "fieldLabel": "Test Field Label invoice "
-  }
+  },
+  "author": "Ashish Soni"
 }
