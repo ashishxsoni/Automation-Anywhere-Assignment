@@ -46,4 +46,5 @@ npx cypress open
 
 ```
 ---
-⚠️ This project is © 2025 Ashish Soni. Protected under the MIT License. Please retain all author credits if you reuse or modify this work.
+---
+⚠️ This project is © 2025 Ashish Soni. Protected under the MIT License. Please retain all author credits if you reuse or modify this work.This project is © 2025 Ashish Soni. Protected under the MIT License. Please retain all author credits if you reuse or modify this work.
