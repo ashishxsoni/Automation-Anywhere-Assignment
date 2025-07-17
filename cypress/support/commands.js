@@ -1,6 +1,3 @@
-// ***********************************************
-
-
 /**
  * Author: Ashish Soni
  * Project: Automation Anywhere SDET Assignment
@@ -9,7 +6,7 @@
  * Any reproduction without proper credit is unethical.
  */
 
-
+// ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
 // existing commands.

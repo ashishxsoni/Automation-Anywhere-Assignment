@@ -1,3 +1,11 @@
+/**
+ * Author: Ashish Soni
+ * Project: Automation Anywhere SDET Assignment
+ * GitHub: https://github.com/ashishxsoni/Automation-Anywhere-Assignment
+ * Copyright (c) 2025. All rights reserved.
+ * Any reproduction without proper credit is unethical.
+ */
+
 require('dotenv').config(); 
 const { defineConfig } = require("cypress");
 
