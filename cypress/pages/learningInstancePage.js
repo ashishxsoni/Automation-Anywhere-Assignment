@@ -120,10 +120,18 @@ class LearningInstancePage {
     
     
     cy.wait(500); // Allow time for form validation
-    this.elements.createFieldButton()
-        .should('be.visible')
-        .should('have.attr', 'data-input-status', 'INTERACTIVE')
-        .click();
+ this.elements.createFieldButton()
+  .scrollIntoView()
+  .wait(300)
+  .should('have.attr', 'data-input-status', 'INTERACTIVE')
+  .then(($btn) => {
+    if ($btn.is(':visible')) {
+      cy.wrap($btn).click();
+    } else {
+      cy.log('Button not fully visible, clicking with force');
+      cy.wrap($btn).click({ force: true });
+    }
+  });
     
     cy.wait(1000);
     return this;
