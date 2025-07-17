@@ -1,0 +1,43 @@
+name: 🔒 Check for Author Signature
+
+on:
+  push:
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.py'
+      - '**/*.java'
+  pull_request:
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.py'
+      - '**/*.java'
+
+jobs:
+  verify-signature:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔍 Check for Signature in Source Files
+        run: |
+          echo "🔎 Searching for required author signature..."
+          MISSING_FILES=$(grep -Lr \
+            -e "Author: Ashish Soni" \
+            -e "Project: Automation Anywhere SDET Assignment" \
+            -e "GitHub: https://github.com/ashishxsoni/Automation-Anywhere-Assignment" \
+            -e "Copyright (c) 2025. All rights reserved." \
+            --include=\*.{js,ts,py,java} . || true)
+
+          if [ -n "$MISSING_FILES" ]; then
+            echo "❌ Signature missing in the following files:"
+            echo "$MISSING_FILES"
+            echo ""
+            echo "🛑 Action failed. Make sure all files include the author signature."
+            exit 1
+          else
+            echo "✅ All files contain the required author signature."
+          fi
